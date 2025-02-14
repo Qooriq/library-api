@@ -18,13 +18,13 @@ import org.springframework.web.bind.annotation.*;
 import static org.springframework.http.ResponseEntity.*;
 
 @ValidatedController
-@RequestMapping("book-tracker")
+@RequestMapping("api/v1/book-tracker")
 @RequiredArgsConstructor
 public class BookTrackerController {
 
     private final BookTrackerService bookTrackerService;
 
-    @GetMapping("/findAll")
+    @GetMapping("/book-trackers")
     public ResponseEntity<PageResponse<BookTrackerReadDto>> getAllBooks(@RequestParam @Min(1) Integer page,
                                                                         @RequestParam @Min(1) @Max(100) Integer size,
                                                                         @AuthenticationPrincipal UserAuthDto userAuthDto) {
@@ -51,20 +51,20 @@ public class BookTrackerController {
                 .changeBookStatus(bookTrackerEditDto.id(), bookTrackerEditDto.bookTrackerStatus()));
     }
 
-    @PutMapping("/take")
+    @PutMapping("/{id}")
     public ResponseEntity<Boolean> changeBookStatus(@AuthenticationPrincipal UserAuthDto userAuthDto,
-                                                    @RequestParam Long id) {
+                                                    @PathVariable Long id) {
         return ok().body(bookTrackerService
                 .take(userAuthDto, id, BookTrackerStatus.TAKEN));
     }
 
-    @DeleteMapping
-    public ResponseEntity<Void> deleteBookTracker(@RequestParam Long id) {
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteBookTracker(@PathVariable Long id) {
         return bookTrackerService.deleteBookTracker(id) ? noContent().build() : notFound().build();
     }
 
-    @DeleteMapping("/delete-by-book-id")
-    public ResponseEntity<Void> deleteByBookId(@RequestParam Long bookId) {
+    @DeleteMapping("/book/{bookId}")
+    public ResponseEntity<Void> deleteByBookId(@PathVariable Long bookId) {
         return bookTrackerService.deleteByBookId(bookId) ? noContent().build() : notFound().build();
     }
 

@@ -33,8 +33,8 @@ dependencies {
     runtimeOnly "io.jsonwebtoken:jjwt-impl:${versions.jwt}"
     runtimeOnly "io.jsonwebtoken:jjwt-jackson:${versions.jwt}"
     implementation "io.jsonwebtoken:jjwt-api:${versions.jwt}"
-    implementation 'org.springframework.cloud:spring-cloud-starter-openfeign:4.2.0'
-    implementation 'org.mapstruct:mapstruct:1.6.3'
+    implementation "org.springframework.cloud:spring-cloud-starter-openfeign:${versions.openfeign}"
+    implementation "org.mapstruct:mapstruct:${versions.mapstruct}"
 
 
 
@@ -44,8 +44,8 @@ dependencies {
     developmentOnly 'org.springframework.boot:spring-boot-docker-compose'
     runtimeOnly 'org.postgresql:postgresql'
     annotationProcessor 'org.projectlombok:lombok'
-    annotationProcessor 'org.mapstruct:mapstruct-processor:1.6.3'
-    annotationProcessor 'org.springframework.cloud:spring-cloud-starter-openfeign:4.2.0'
+    annotationProcessor "org.mapstruct:mapstruct-processor:${versions.mapstruct}"
+    annotationProcessor "org.springframework.cloud:spring-cloud-starter-openfeign:${versions.openfeign}"
 
 
 

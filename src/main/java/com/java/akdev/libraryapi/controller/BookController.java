@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import static org.springframework.http.ResponseEntity.*;
 
 @ValidatedController
-@RequestMapping("/books")
+@RequestMapping("api/v1/books")
 @RequiredArgsConstructor
 @Slf4j
 public class BookController {
@@ -50,16 +50,16 @@ public class BookController {
                 .orElseGet(notFound()::build);
     }
 
-    @DeleteMapping
+    @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteById(@RequestHeader("Authorization") String token,
-                                           @RequestParam Long id) {
+                                           @PathVariable Long id) {
         boolean res = bookService.delete(id);
         postTrackerClient.deleteBookTracker(token, id);
         return res ? noContent().build() : notFound().build();
     }
 
-    @PutMapping
-    public ResponseEntity<BookDto> update(@RequestParam Long id,
+    @PutMapping("/{id}")
+    public ResponseEntity<BookDto> update(@PathVariable Long id,
                                           @RequestBody BookDto bookDto) {
         return bookService.update(id, bookDto)
                 .map(obj -> ok().body(obj))

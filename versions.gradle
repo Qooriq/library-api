@@ -1,6 +1,8 @@
 ext {
     versions = [
-        'springdoc' : '2.6.0',
-        'jwt' : '0.11.5',
+            'springdoc': '2.6.0',
+            'jwt'      : '0.11.5',
+            'mapstruct': '1.6.3',
+            'openfeign': '4.2.0'
     ]
 }

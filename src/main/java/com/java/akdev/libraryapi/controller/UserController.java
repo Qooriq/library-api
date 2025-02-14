@@ -18,7 +18,7 @@ import java.util.UUID;
 import static org.springframework.http.ResponseEntity.*;
 
 @ValidatedController
-@RequestMapping("/users")
+@RequestMapping("api/v1/users")
 @RequiredArgsConstructor
 @Slf4j
 public class UserController {
@@ -40,14 +40,14 @@ public class UserController {
                 .orElse(notFound().build());
     }
 
-    @PutMapping
+    @PutMapping("/{id}")
     public ResponseEntity<UserReadDto> update(@RequestBody UserEditDto dto) {
         return userService.update(dto)
                 .map(obj -> ok().body(obj))
                 .orElse(notFound().build());
     }
 
-    @DeleteMapping
+    @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(@RequestBody UUID id) {
         return userService.delete(id) ? noContent().build() : notFound().build();
     }
