@@ -1,0 +1,455 @@
+{
+	"info": {
+		"_postman_id": "6ac6f98d-cf45-4867-acc4-b9ffb0749f60",
+		"name": "Library",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "36630209"
+	},
+	"item": [
+		{
+			"name": "user controller",
+			"item": [
+				{
+					"name": "Registration",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"kozla412@gmail.com\",\n    \"password\": \"123\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/users/registration",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users",
+								"registration"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "sign-in",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"kozla411@gmail.com\",\n    \"password\": \"123\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/users/sign-in",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users",
+								"sign-in"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "book controller",
+			"item": [
+				{
+					"name": "add new book",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJpZCI6Ijg1NmMyNjI1LTUzM2ItNDc0OS05MTFlLWRmZDIyODdlMjFlOCIsInVzZXJuYW1lIjoia296bGE0MTFAZ21haWwuY29tIiwic3ViIjoia296bGE0MTFAZ21haWwuY29tIiwiaWF0IjoxNzM5Mzk2MTEwLCJleHAiOjE3Mzk1NDAxMTB9.MxFWLvdnBgc7whSjxVQ9CqGB01tqzZfrAoQK8uWmslo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"isbn\": \"adgsasd3\",\n    \"name\": \"Zhenya\",\n    \"genre\": \"MYSTERY\",\n    \"description\": \"asdsafasf\",\n    \"author\": \"Tony4\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/books",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"books"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all books",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJpZCI6Ijg5Nzc3NjZjLWM5N2UtNDUwYS04YThkLTM1NDVmNmJlYTNjZiIsInVzZXJuYW1lIjoia296bGE0MTFAZ21haWwuY29tIiwic3ViIjoia296bGE0MTFAZ21haWwuY29tIiwiaWF0IjoxNzM5NDAxNjU3LCJleHAiOjE3Mzk1NDU2NTd9.0DvcIlwjhqGk2CDT3RA0OFQdiQfzQcwnW5lbiRvyINY",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/books?page=1&size=10",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"books"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "size",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get book by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/books/4",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"books",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get book by isbn",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJpZCI6Ijg5Nzc3NjZjLWM5N2UtNDUwYS04YThkLTM1NDVmNmJlYTNjZiIsInVzZXJuYW1lIjoia296bGE0MTFAZ21haWwuY29tIiwic3ViIjoia296bGE0MTFAZ21haWwuY29tIiwiaWF0IjoxNzM5NDM2NzEzLCJleHAiOjE3Mzk1ODA3MTN9.og17j81i7hJ4syUwDwXEZxhP5pylhXxoufMAVxUw_qE",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/books/isbn?isbn=asdfsadf1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"books",
+								"isbn"
+							],
+							"query": [
+								{
+									"key": "isbn",
+									"value": "asdfsadf1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "change book",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"isbn\": \"sdsadfd\",\n    \"name\": \"Pochti\",\n    \"genre\": \"HORROR\",\n    \"description\": \"a\",\n    \"author\": \"Ya\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/books?id=2",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"books"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete book",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/books?id=4",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"books"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "4"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "book tracker controller",
+			"item": [
+				{
+					"name": "get all book trackers",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJpZCI6Ijg5Nzc3NjZjLWM5N2UtNDUwYS04YThkLTM1NDVmNmJlYTNjZiIsInVzZXJuYW1lIjoia296bGE0MTFAZ21haWwuY29tIiwic3ViIjoia296bGE0MTFAZ21haWwuY29tIiwiaWF0IjoxNzM5NDU1MjU0LCJleHAiOjE3Mzk1OTkyNTR9.sTL-cJLqBD-R7wdF5z3843-E0yGfAMlZ2FyOQzAmWrs",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/book-tracker/findAll?page=1&size=10",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"book-tracker",
+								"findAll"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "size",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create new tracker",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"isbn\": \"asdfsadf1\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/book-tracker",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"book-tracker"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get-all-available-books",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/book-tracker?page=1&size=10",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"book-tracker"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "size",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "take book",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/book-tracker/take?id=7",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"book-tracker",
+								"take"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "7"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete book tracker",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/book-tracker?id=4",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"book-tracker"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "4"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{auth_key}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "auth_key",
+			"value": "eyJhbGciOiJIUzI1NiJ9.eyJpZCI6IjgyNmRlYjEyLTk1N2UtNDdkYS1iZDE5LWU3MGViZWUwNDgxOCIsInVzZXJuYW1lIjoia296bGE0MTFAZ21haWwuY29tIiwic3ViIjoia296bGE0MTFAZ21haWwuY29tIiwiaWF0IjoxNzM5NDg5NDcwLCJleHAiOjE3Mzk2MzM0NzB9.r6XH7eH5H3F_bPd5KzMJHojY3YaZdAdhFXj1pWckI5k",
+			"type": "string"
+		}
+	]
+}
