@@ -1,0 +1,21 @@
+spring:
+  application:
+    name: LibraryApi
+  datasource:
+    username: postgres
+    password: root
+    url: jdbc:postgresql://localhost:5434/libraryapi
+    driver-class-name: org.postgresql.Driver
+  liquibase:
+    enabled: false
+  jpa:
+    properties.hibernate:
+      batch_size: 50
+      fetch_size: 50
+      show_sql: true
+      format_sql: true
+      hbm2ddl.auto: validate
+    open-in-view: false
+  token:
+    signing:
+      key: 53A73E5F1C4E0A2D3B5F2D784E6A1B423D6F247D1F6E5C3A596D635A75327855
