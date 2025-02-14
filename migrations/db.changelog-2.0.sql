@@ -8,9 +8,9 @@ INSERT INTO users (id, username, password, user_status, role) VALUES
 
 --changeset Qooriq:2
 INSERT INTO books(isbn, name, genre, book_status, description, author) VALUES
-('asdfsadf1', 'dsafdasf', 'MYSTERY', 'AVAILABLE', 'Asfdsafas', 'ASD'),
-('asdfsadf2', 'dsafdasf', 'MYSTERY', 'AVAILABLE', 'Asfdsafas', 'ASD'),
-('asdfsadf3', 'dsafdasf', 'MYSTERY', 'AVAILABLE', 'Asfdsafas', 'ASD');
+('asdfsadf1', 'Bill', 'MYSTERY', 'AVAILABLE', null, 'Alex'),
+('asdfsadf2', 'Cypher', 'MYSTERY', 'AVAILABLE', null, 'Hirsh'),
+('asdfsadf3', 'Incognito', 'MYSTERY', 'AVAILABLE', null, 'Ven');
 
 --changeset Qooriq:3
 INSERT INTO book_tracker(book_id, book_status, took_at, took_by, return_before) VALUES

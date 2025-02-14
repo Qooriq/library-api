@@ -13,6 +13,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 
+import java.time.LocalDateTime;
 import java.util.Optional;
 
 @TransactionalService
@@ -69,6 +70,8 @@ public class BookTrackerService {
                 .map(bookTracker -> {
                     bookTracker.setBookTrackerStatus(bookTrackerStatus);
                     bookTracker.setUser(userRepository.findById(userAuthDto.id()).get());
+                    bookTracker.setTookAt(LocalDateTime.now());
+                    bookTracker.setReturnBefore(LocalDateTime.now().plusDays(7));
                     btRepository.saveAndFlush(bookTracker);
                     return true;
                 })
