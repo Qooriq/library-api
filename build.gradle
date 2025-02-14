@@ -4,6 +4,8 @@ plugins {
     id 'io.spring.dependency-management' version '1.1.7'
 }
 
+apply from: 'versions.gradle'
+
 group = 'com.java.AKdev'
 version = '0.0.1-SNAPSHOT'
 
@@ -27,24 +29,23 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     implementation 'org.springframework.boot:spring-boot-starter-security'
     implementation 'org.springframework.boot:spring-boot-starter-web'
-    implementation 'org.springdoc:springdoc-openapi-ui:1.7.0'
-    runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.11.5'
-    runtimeOnly 'io.jsonwebtoken:jjwt-jackson:0.11.5'
-    implementation 'io.jsonwebtoken:jjwt-api:0.11.5'
+    implementation "org.springdoc:springdoc-openapi-starter-webmvc-ui:${versions.springdoc}"
+    runtimeOnly "io.jsonwebtoken:jjwt-impl:${versions.jwt}"
+    runtimeOnly "io.jsonwebtoken:jjwt-jackson:${versions.jwt}"
+    implementation "io.jsonwebtoken:jjwt-api:${versions.jwt}"
     implementation 'org.springframework.cloud:spring-cloud-starter-openfeign:4.2.0'
     implementation 'org.mapstruct:mapstruct:1.6.3'
-//    implementation 'com.fasterxml.jackson.core:jackson-core:2.18.2'
 
 
 
 
-    compileOnly 'org.mapstruct:mapstruct:1.5.3.Final'
+    compileOnly 'org.mapstruct:mapstruct:1.6.3'
     compileOnly 'org.projectlombok:lombok'
     developmentOnly 'org.springframework.boot:spring-boot-docker-compose'
     runtimeOnly 'org.postgresql:postgresql'
     annotationProcessor 'org.projectlombok:lombok'
     annotationProcessor 'org.mapstruct:mapstruct-processor:1.6.3'
-    annotationProcessor 'org.springframework.cloud:spring-cloud-starter-openfeign:4.1.3'
+    annotationProcessor 'org.springframework.cloud:spring-cloud-starter-openfeign:4.2.0'
 
 
 

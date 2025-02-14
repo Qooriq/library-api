@@ -12,6 +12,7 @@ import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -41,9 +42,21 @@ public class SecurityConfiguration {
                                         HttpMethod.POST,
                                         "/users/registration",
                                         "/users/sign-in"
-                                ).permitAll()
+                                )
+                                .permitAll()
+                                .requestMatchers(
+                                        "/actuator/**",
+                                        "/bids/**",
+                                        "/categories/**",
+                                        "/data-selection/**",
+                                        "/lots/**",
+                                        "/swagger-ui/**",
+                                        "/v3/**"
+                                )
+                                .permitAll()
+                                .requestMatchers("/v3/api-docs").permitAll()
                                 .requestMatchers("/auth/**").permitAll()
-                                .requestMatchers("/swagger-ui/**", "/swagger-resources/*", "/v3/api-docs/**").permitAll()
+                                .requestMatchers("/swagger-ui/*", "/swagger-resources/*", "/v3/api-docs/*").permitAll()
                                 .anyRequest().authenticated()
                 )
                 .sessionManagement(manager -> manager.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
