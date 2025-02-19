@@ -1,1 +1,6 @@
 rootProject.name = 'library-api'
+
+include 'book-storage-service'
+include 'book-tracker-service'
+include 'app-gateway'
+include 'auth-service'

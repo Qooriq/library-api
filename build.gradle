@@ -1,65 +1,65 @@
-plugins {
-    id 'java'
-    id 'org.springframework.boot' version '3.4.2'
-    id 'io.spring.dependency-management' version '1.1.7'
-}
-
-apply from: 'versions.gradle'
+//plugins {
+//    id 'java'
+//    id 'org.springframework.boot' version '3.4.2'
+//    id 'io.spring.dependency-management' version '1.1.7'
+//}
+//
+//apply from: 'versions.gradle'
 
 group = 'com.java.AKdev'
 version = '0.0.1-SNAPSHOT'
 
-java {
-    toolchain {
-        languageVersion = JavaLanguageVersion.of(21)
-    }
-}
+//java {
+//    toolchain {
+//        languageVersion = JavaLanguageVersion.of(21)
+//    }
+//}
 
-configurations {
-    compileOnly {
-        extendsFrom annotationProcessor
-    }
-}
+//configurations {
+//    compileOnly {
+//        extendsFrom annotationProcessor
+//    }
+//}
 
 repositories {
     mavenCentral()
 }
 
-dependencies {
-    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-    implementation 'org.springframework.boot:spring-boot-starter-security'
-    implementation 'org.springframework.boot:spring-boot-starter-web'
-    implementation "org.springdoc:springdoc-openapi-starter-webmvc-ui:${versions.springdoc}"
-    runtimeOnly "io.jsonwebtoken:jjwt-impl:${versions.jwt}"
-    runtimeOnly "io.jsonwebtoken:jjwt-jackson:${versions.jwt}"
-    implementation "io.jsonwebtoken:jjwt-api:${versions.jwt}"
-    implementation "org.springframework.cloud:spring-cloud-starter-openfeign:${versions.openfeign}"
-    implementation "org.mapstruct:mapstruct:${versions.mapstruct}"
+//dependencies {
+//    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+//    implementation 'org.springframework.boot:spring-boot-starter-security'
+//    implementation 'org.springframework.boot:spring-boot-starter-web'
+//    implementation "org.springdoc:springdoc-openapi-starter-webmvc-ui:${versions.springdoc}"
+//    runtimeOnly "io.jsonwebtoken:jjwt-impl:${versions.jwt}"
+//    runtimeOnly "io.jsonwebtoken:jjwt-jackson:${versions.jwt}"
+//    implementation "io.jsonwebtoken:jjwt-api:${versions.jwt}"
+//    implementation "org.springframework.cloud:spring-cloud-starter-openfeign:${versions.openfeign}"
+//    implementation "org.mapstruct:mapstruct:${versions.mapstruct}"
+//    annotationProcessor "org.mapstruct:mapstruct-processor:${versions.mapstruct}"
+//
+//
+//
+//
+//    compileOnly 'org.mapstruct:mapstruct:1.6.3'
+//    compileOnly 'org.projectlombok:lombok'
+//    developmentOnly 'org.springframework.boot:spring-boot-docker-compose'
+//    runtimeOnly 'org.postgresql:postgresql'
+//    annotationProcessor 'org.projectlombok:lombok'
+//    annotationProcessor "org.springframework.cloud:spring-cloud-starter-openfeign:${versions.openfeign}"
+//
+//
+//
+//    testImplementation 'org.liquibase:liquibase-core'
+//    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+//    testImplementation 'org.springframework.boot:spring-boot-testcontainers'
+//    testImplementation 'org.springframework.security:spring-security-test'
+//    testImplementation 'org.testcontainers:junit-jupiter'
+//    testImplementation 'org.testcontainers:postgresql'
+//    testCompileOnly 'org.projectlombok:lombok'
+//    testAnnotationProcessor 'org.projectlombok:lombok'
+//    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+//}
 
-
-
-
-    compileOnly 'org.mapstruct:mapstruct:1.6.3'
-    compileOnly 'org.projectlombok:lombok'
-    developmentOnly 'org.springframework.boot:spring-boot-docker-compose'
-    runtimeOnly 'org.postgresql:postgresql'
-    annotationProcessor 'org.projectlombok:lombok'
-    annotationProcessor "org.mapstruct:mapstruct-processor:${versions.mapstruct}"
-    annotationProcessor "org.springframework.cloud:spring-cloud-starter-openfeign:${versions.openfeign}"
-
-
-
-    testImplementation 'org.liquibase:liquibase-core'
-    testImplementation 'org.springframework.boot:spring-boot-starter-test'
-    testImplementation 'org.springframework.boot:spring-boot-testcontainers'
-    testImplementation 'org.springframework.security:spring-security-test'
-    testImplementation 'org.testcontainers:junit-jupiter'
-    testImplementation 'org.testcontainers:postgresql'
-    testCompileOnly 'org.projectlombok:lombok'
-    testAnnotationProcessor 'org.projectlombok:lombok'
-    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
-}
-
-tasks.named('test') {
-    useJUnitPlatform()
-}
+//tasks.named('test') {
+//    useJUnitPlatform()
+//}
