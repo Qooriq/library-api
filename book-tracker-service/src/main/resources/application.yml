@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: book-tracker-service
+  datasource:
+    url: jdbc:postgresql://localhost:5436/book-tracker-service
+    username: postgres
+    password: root
+  liquibase:
+    enabled: false
+
+server:
+  port: 8083

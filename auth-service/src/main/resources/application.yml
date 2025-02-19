@@ -1,0 +1,28 @@
+application:
+  keycloak:
+    host:
+      http://localhost:8180
+    realm:
+      admin:
+        master
+      app:
+        library-api
+    username:
+      admin
+    password:
+      pass
+    clientId:
+      admin-cli
+    clientSecret:
+      ZClzzg7a5Nl0xNMotMlt7w5EMKv2dfXJ
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5434/authorization-service
+    username: postgres
+    password: root
+  liquibase:
+    enabled: false
+
+server:
+  port: 8081

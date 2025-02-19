@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: book-storage-service
+  datasource:
+    url: jdbc:postgresql://localhost:5435/book-storage-service
+    username: postgres
+    password: root
+  liquibase:
+    enabled: false
+      
+
+server:
+  port: 8082

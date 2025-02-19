@@ -1,0 +1,81 @@
+server:
+  port: 8080
+
+application:
+  keycloak:
+    host: http://localhost:8180
+    realm: library-api
+    clientId: Qooriq
+    clientSecret: M2WKIOfq4fJTixBPL7X67YZDjC7tIOGG
+    authScope: openid
+  security:
+    anonymous-access: >
+      /api/auth/login,
+      /swagger-ui/**,
+      /v3/**,
+      /api/v1/users/registration,
+      /api/v1/users/**
+spring:
+  application:
+    name: gateway
+  cloud:
+    gateway:
+      routes:
+        - id: book-storage
+          uri: http://localhost:8082
+          predicates:
+            - Path=/api/v1/books/**
+        - id: book-tracker
+          uri: http://localhost:8083
+          predicates:
+            - Path=/api/v1/book-tracker/**
+        - id: authorization
+          uri: http://localhost:8081
+          predicates:
+            - Path=/api/v1/users/**
+  datasource:
+    url: jdbc:postgresql://localhost:5434/authorization-service
+    username: postgres
+    password: root
+  liquibase:
+    enabled: false
+  main:
+    web-application-type: reactive
+    allow-bean-definition-overriding: true
+  security:
+    oauth2:
+      resourceserver:
+        opaquetoken:
+          introspection-uri: "${application.keycloak.host}/realms/${application.keycloak.realm}/protocol/openid-connect/token/introspect"
+          client-id: "${application.keycloak.clientId}"
+          client-secret: "${application.keycloak.clientSecret}"
+        jwt:
+          issuer-uri: http://localhost:8180/realms/library-api
+      client:
+        provider:
+          keycloak:
+            issuer-uri: http://localhost:8180/realms/library-api
+            user-name-attribute: preferred_username
+        registration:
+          keycloak:
+            client-id: Qooriq
+            client-secret: 5XKO0fygJgNSAQ8H3n2Pt2JXZgXGwFjt
+            scope: openid
+springdoc:
+  swagger-ui:
+    use-root-path: true
+    urls:
+      - name: book-storage
+        url: /v3/api/book-storage
+      - name: book-tracker
+        url: /v3/api/book-tracker
+      - name: authorization
+        url: /v3/api/authorization
+logging:
+  level:
+    reactor:
+      netty: INFO
+    org:
+      springframework:
+        cloud:
+          gateway: TRACE
