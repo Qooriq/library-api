@@ -7,16 +7,19 @@ import com.java.akdev.booktrackerservice.enumeration.BookTrackerStatus;
 import com.java.akdev.booktrackerservice.repository.BookTrackerRepository;
 import com.nimbusds.jwt.SignedJWT;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import java.text.ParseException;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.Arrays;
 import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class BookTrackerService {
 
     private final BookTrackerRepository btRepository;
@@ -34,17 +37,12 @@ public class BookTrackerService {
                 .map(this::toBookTrackerReadDto);
     }
 
-    public Optional<BookTrackerReadDto> create(BookTrackerCreateDto dto) {
-        return Optional.of(dto)
-                .map(obj -> {
-                    var bookTracker = BookTracker.builder()
-                            .isbn(dto.isbn())
-                            .bookTrackerStatus(BookTrackerStatus.AVAILABLE)
-                            .build();
-                    btRepository.saveAndFlush(bookTracker);
-                    return bookTracker;
-                })
-                .map(this::toBookTrackerReadDto);
+    public BookTrackerReadDto create(BookTrackerCreateDto dto) {
+        var bookTracker = BookTracker.builder()
+                .isbn(dto.isbn())
+                .bookTrackerStatus(BookTrackerStatus.AVAILABLE)
+                .build();
+        return toBookTrackerReadDto(btRepository.saveAndFlush(bookTracker));
     }
 
     public Page<BookTrackerReadDto> findAllAvailableBooks(Integer page, Integer size) {
@@ -72,7 +70,7 @@ public class BookTrackerService {
                         var claimsSet = signedJwt.getJWTClaimsSet();
                         username = (String) claimsSet.getClaim("preferred_username");
                     } catch (ParseException e) {
-                        e.printStackTrace();
+                        log.error(Arrays.toString(e.getStackTrace()));
                     }
                     bookTracker.setUsername(username);
                     bookTracker.setBookTrackerStatus(bookTrackerStatus);

@@ -7,7 +7,6 @@ import com.java.akdev.booktrackerservice.dto.read.PageResponse;
 import com.java.akdev.booktrackerservice.enumeration.BookTrackerStatus;
 import com.java.akdev.booktrackerservice.feignclient.BookClient;
 import com.java.akdev.booktrackerservice.service.BookTrackerService;
-import feign.FeignException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -31,22 +30,11 @@ public class BookTrackerController {
     @PostMapping
     public ResponseEntity<BookTrackerReadDto> createBookTracker(@RequestHeader("Authorization") String token,
                                                                 @RequestBody BookTrackerCreateDto dto) {
-        try {
-            var book = bookClient.getBookByIsbn(token, dto.isbn());
-            if (book != null) {
-                return bookTrackerService.create(dto)
-                        .map(obj -> ok().body(obj))
-                        .orElseGet(notFound()::build);
-            } else {
-                return bookTrackerService.create(dto)
-                        .map(obj -> ok().body(obj))
-                        .orElseGet(notFound()::build);
-            }
-        } catch (FeignException e) {
-            return notFound().build();
-        }
 
+        var book = bookClient.getBookByIsbn(token, dto.isbn());
+        return ResponseEntity.status(200).body(bookTrackerService.create(dto));
     }
+
 
     @GetMapping
     public ResponseEntity<PageResponse<BookTrackerReadDto>> getAllAvailableBooksBooks(@RequestParam Integer page,

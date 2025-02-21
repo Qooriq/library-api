@@ -10,7 +10,7 @@ application:
     authScope: openid
   security:
     anonymous-access: >
-      /api/auth/login,
+      /api/v1/auth/login,
       /swagger-ui/**,
       /v3/**,
       /api/v1/users/registration,

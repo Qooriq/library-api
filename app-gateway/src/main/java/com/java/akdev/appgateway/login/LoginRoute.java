@@ -2,7 +2,7 @@ package com.java.akdev.appgateway.login;
 
 import com.java.akdev.appgateway.dto.AccessTokenResponse;
 import com.java.akdev.appgateway.dto.LoginRequest;
-import com.java.akdev.appgateway.enums.CookieNameEnum;
+import com.java.akdev.appgateway.enums.CookieName;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.gateway.filter.factory.rewrite.RewriteFunction;
@@ -23,7 +23,7 @@ import java.util.Map;
 public class LoginRoute {
 
     private static final String GRANT_TYPE_PASSWORD = "password";
-    public static final String LOGIN_PATH = "/api/auth/login";
+    public static final String LOGIN_PATH = "/api/v1/auth/login";
 
     @Value("${application.keycloak.clientId}")
     private String clientId;
@@ -72,8 +72,8 @@ public class LoginRoute {
             var res = new AccessTokenResponse();
             var response = exchange.getResponse();
             if (response.getStatusCode() != null && response.getStatusCode().is2xxSuccessful()) {
-                res.setAccessToken((String) map.get(CookieNameEnum.ACCESS_TOKEN.name().toLowerCase()));
-                res.setRefreshToken((String) map.get(CookieNameEnum.REFRESH_TOKEN.name().toLowerCase()));
+                res.setAccessToken((String) map.get(CookieName.ACCESS_TOKEN.name().toLowerCase()));
+                res.setRefreshToken((String) map.get(CookieName.REFRESH_TOKEN.name().toLowerCase()));
                 return Mono.just(res);
             }
             res.setMessage("Wrong login or password");

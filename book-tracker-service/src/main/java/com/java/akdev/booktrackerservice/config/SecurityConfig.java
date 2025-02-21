@@ -2,7 +2,6 @@ package com.java.akdev.booktrackerservice.config;
 
 import com.nimbusds.jwt.SignedJWT;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AbstractAuthenticationToken;
@@ -11,7 +10,6 @@ import org.springframework.security.authentication.ProviderManager;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
-import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.oauth2.jwt.Jwt;
@@ -41,11 +39,6 @@ public class SecurityConfig {
                 .authorizeHttpRequests(registry -> registry.anyRequest().authenticated())
                 .addFilterBefore(authenticationFilter(), AnonymousAuthenticationFilter.class)
                 .build();
-    }
-
-    @Bean
-    public BearerTokenAuthenticationFilter authenticationFilter() {
-        return new BearerTokenAuthenticationFilter(new ProviderManager(authProvider()));
     }
 
     @Bean
@@ -92,6 +85,11 @@ public class SecurityConfig {
             }
 
         };
+    }
+
+    @Bean
+    public BearerTokenAuthenticationFilter authenticationFilter() {
+        return new BearerTokenAuthenticationFilter(new ProviderManager(authProvider()));
     }
 
     @Bean
